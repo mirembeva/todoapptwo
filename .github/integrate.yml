@@ -1,0 +1,17 @@
+name: Continous Integrate
+
+on: 
+pull-request:
+  branches: [main]
+
+jobs:
+  test_pull_request:
+    runs-on: windows-2019
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v1
+        with:
+          node-version: 10
+      - run: npm ci
+      - run: npm test
+      - run: npm run build
